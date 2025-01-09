@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200 font-sans">
+
+    <div class="min-h-screen flex flex-col">
+        <!-- Navbar -->
+        <nav class="bg-gray-800 p-4 shadow-md">
+            <div class="max-w-7xl mx-auto flex items-center justify-between text-white">
+                <h1 class="text-2xl font-semibold">Admin Panel</h1>
+                <div>
+                    <a href="https://www.youtube.com" class="text-sm hover:underline">Go to YouTube</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <div class="flex-1 overflow-hidden bg-gray-100 p-6">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Users List</h2>
+                
+                <!-- Table -->
+                <div class="overflow-x-auto bg-white shadow-lg rounded-lg border border-gray-200">
+                    <table class="min-w-full text-sm">
+                        <thead class="bg-gray-900 text-white">
+                            <tr>
+                                <th class="px-6 py-3 text-left">Username</th>
+                                <th class="px-6 py-3 text-left">Password</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            {% for user in users %}
+                                <tr class="border-t hover:bg-gray-100">
+                                    <td class="px-6 py-4">{{ user.username }}</td>
+                                    <td class="px-6 py-4">{{ user.password }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white p-4 mt-8">
+            <div class="max-w-7xl mx-auto text-center">
+                <p>&copy; 2025 Admin Panel. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
