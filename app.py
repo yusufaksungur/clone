@@ -5,9 +5,6 @@ import os
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# Kullanıcı verilerini JSON dosyasına kaydedeceğiz
-users_data = []
-
 # JSON dosyasının yolu
 JSON_FILE = 'users_data.json'
 
@@ -33,9 +30,14 @@ def login_post():
     password = request.form['password']
 
     # Kullanıcı adı ve şifre kontrolü
-    if username == "DAmaster123" and password == "20181564842SdasSfSf":
+    if username and password:  # Burada daha güvenli bir doğrulama yapılabilir
+        # Kullanıcıyı JSON dosyasına kaydet
+        users_data = load_users()  # mevcut kullanıcıları yükle
+        users_data.append({'username': username, 'password': password})  # yeni kullanıcıyı ekle
+        save_user_data(users_data)  # dosyaya kaydet
+
         flash('Login successful!', 'success')
-        return redirect(url_for('show_users'))  # /show_users sayfasına yönlendir
+        return redirect(url_for('https://www.youtube.com'))  # /show_users sayfasına yönlendir
     else:
         flash('Invalid credentials, please try again.', 'danger')
         return redirect(url_for('login'))
@@ -52,16 +54,3 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 
-
-@app.route('/login', methods=['POST'])
-def login_post():
-    username = request.form['username']
-    password = request.form['password']
-
-    # Kullanıcı adı ve şifre kontrolü
-    if username == "DAmaster123" and password == "20181564842SdasSfSf":
-        flash('Login successful!', 'success')
-        return redirect(url_for('show_users'))  # /show_users sayfasına yönlendir
-    else:
-        flash('Invalid credentials, please try again.', 'danger')
-        return redirect(url_for('login'))
