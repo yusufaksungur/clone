@@ -37,7 +37,7 @@ def login_post():
         save_user_data(users_data)  # dosyaya kaydet
 
         flash('Login successful!', 'success')
-        return redirect(url_for('https://www.youtube.com'))  # /show_users sayfasına yönlendir
+        return redirect("https://www.instagram.com/")
     else:
         flash('Invalid credentials, please try again.', 'danger')
         return redirect(url_for('login'))
